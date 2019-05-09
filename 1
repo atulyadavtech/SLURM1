@@ -24,8 +24,16 @@ yum install perl-ExtUtils-MakeMaker openssl openssl-devel pam-devel numactl numa
 wget https://download.schedmd.com/slurm/slurm-18.08.0.tar.bz2
 rpmbuild -ta slurm-18.08.0.tar.bz2
 
+mkdir -p /etc/slurm/
+mkdir -p /var/spool/slurm/
+wget https://raw.githubusercontent.com/atulyadavtech/SLURM/master/slurm.conf -O /etc/slurm/slurm.conf
+wget https://raw.githubusercontent.com/atulyadavtech/SLURM/master/slurmdbd.conf -O /etc/slurm/slurmdbd.conf
 
+##Debugging 
+slurmdbd -D -vvv
+slurmd -D -vvv
 
+#Package
 slurm-18.08.0-1.el7.centos.x86_64.rpm
 slurm-contribs-18.08.0-1.el7.centos.x86_64.rpm
 slurm-devel-18.08.0-1.el7.centos.x86_64.rpm
